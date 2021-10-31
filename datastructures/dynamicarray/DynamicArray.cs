@@ -15,19 +15,16 @@ namespace dynamicarray
         {
             arr = new T[16];
         }
-
         public DynamicArray(int capacity)
         {
             if (capacity < 0) throw new ArgumentOutOfRangeException("out of range capacity: " + capacity);
             this.capacity = capacity;
             arr = new T[capacity]; // recreate arr with new capacity
         }
-
         public int Size()
         {
             return len;
         }
-
         public Boolean IsEmpty()
         {
             return Size() == 0;
@@ -53,6 +50,22 @@ namespace dynamicarray
         public Boolean Contains(T[] arr, T elem)
         {
             return Array.Exists(arr, e => e.Equals(elem));
+        }
+        public void Add(T elem)
+        {
+            if (len + 1 >= capacity)
+            {
+                if (capacity == 0) capacity = 1;
+                else capacity *= 2; // double the size
+
+                T[] newArr = new T[capacity];
+                for (int i = 0; i < capacity; i++)
+                {
+                    newArr[i] = arr[i];
+                }
+                arr = newArr; // arr has extra null padded
+            }
+            arr[len++] = elem;
         }
     }
 }
