@@ -4,7 +4,7 @@ using System.Text;
 
 namespace dynamicarray
 {
-    public  class DynamicArray<T> 
+    public class DynamicArray<T>
     {
         private T[] arr;
         private int len = 0; //Length user thinks array is
@@ -35,7 +35,7 @@ namespace dynamicarray
             return index < 0 || index > capacity ? throw new IndexOutOfRangeException("This index is out of the range: " + index) : arr[index];
         }
         // set elem value to specific index
-        public T Set(int index,T elem)
+        public T Set(int index, T elem)
         {
             return index < 0 || index > capacity ? throw new IndexOutOfRangeException("This index is out of the range: " + index) : arr[index] = elem;
         }
@@ -66,6 +66,24 @@ namespace dynamicarray
                 arr = newArr; // arr has extra null padded
             }
             arr[len++] = elem;
+        }
+        public T RempoveAt(int index)
+        {
+            T data = (T)Activator.CreateInstance(typeof(T));
+            if (index >= 0)
+            {
+                data = arr[index];
+                T[] newArr = new T[capacity];
+                for (int i = 0; i < len; i++)
+                {
+                    while (i != index)
+                    {
+                        newArr[i] = arr[i];
+                    }
+                }
+                arr = newArr;
+            }
+            return data;
         }
     }
 }
