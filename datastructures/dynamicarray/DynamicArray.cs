@@ -85,5 +85,23 @@ namespace dynamicarray
             }
             return data;
         }
+        public T AA(int index)
+        {
+            T data = (T)Activator.CreateInstance(typeof(T));
+            if (index >= 0)
+            {
+                data = arr[index];
+                T[] newArr = new T[capacity];
+                for (int i = 0; i < len; i++)
+                {
+                    while (i != index)
+                    {
+                        newArr[i] = arr[i];
+                    }
+                }
+                arr = newArr;
+            }
+            return data;
+        }
     }
 }
