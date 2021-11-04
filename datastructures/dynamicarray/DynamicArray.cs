@@ -67,40 +67,17 @@ namespace dynamicarray
             }
             arr[len++] = elem;
         }
-        public T RempoveAt(int index)
+        // Removes an element at the specified index in this array.
+        public T RemoveAt(int rm_index)
         {
-            T data = (T)Activator.CreateInstance(typeof(T));
-            if (index >= 0)
-            {
-                data = arr[index];
-                T[] newArr = new T[capacity];
-                for (int i = 0; i < len; i++)
-                {
-                    while (i != index)
-                    {
-                        newArr[i] = arr[i];
-                    }
-                }
-                arr = newArr;
-            }
-            return data;
-        }
-        public T AA(int index)
-        {
-            T data = (T)Activator.CreateInstance(typeof(T));
-            if (index >= 0)
-            {
-                data = arr[index];
-                T[] newArr = new T[capacity];
-                for (int i = 0; i < len; i++)
-                {
-                    while (i != index)
-                    {
-                        newArr[i] = arr[i];
-                    }
-                }
-                arr = newArr;
-            }
+            if (rm_index >= len || rm_index < 0) throw new IndexOutOfRangeException("This index is out of the range: " + rm_index);
+            T data = arr[rm_index];
+            T[] new_arr = new T[capacity];
+            for (int i = 0, j = 0; i < len; i++, j++)
+                if (i == rm_index) j--; // Skip over rm_index by fixing j temporarily
+                else new_arr[j] = arr[i];
+            arr = new_arr;
+            capacity = --len;
             return data;
         }
     }
