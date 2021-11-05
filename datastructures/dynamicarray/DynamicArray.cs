@@ -80,5 +80,26 @@ namespace dynamicarray
             capacity = --len;
             return data;
         }
+        public int IndexOf(T elem)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (elem == null)
+                {
+                    if (arr[i] == null)
+                    {
+                        return i;
+                    }
+                }
+                else
+                {
+                    if (elem.Equals(arr[i]))
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
     }
 }
