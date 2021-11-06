@@ -4,7 +4,7 @@ using System.Text;
 
 namespace dynamicarray
 {
-    public class DynamicArray<T>
+    public class DynamicArray<T> 
     {
         private T[] arr;
         private int len = 0; //Length user thinks array is
@@ -100,6 +100,19 @@ namespace dynamicarray
                 }
             }
             return -1;
+        }
+        public Boolean Remove(T elem)
+        {
+            if (IndexOf(elem) == -1)
+            {
+                return false;
+            }
+            Remove(elem);
+            return true;
+        }
+        public Boolean Contain(T elem)
+        {
+            return IndexOf(elem) != -1;
         }
     }
 }
