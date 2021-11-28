@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithms.C_sharp_Nutshell;
+using System;
 
 namespace Algorithms
 {
@@ -6,7 +7,8 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Basic.RectangularArray();
+            Console.ReadKey();
         }
     }
 }
